@@ -1,3 +1,3 @@
-module github.com/MoM-Repo/mom-boilerplate
+module github.com/fakel876/catalog-service
 
 go 1.25
