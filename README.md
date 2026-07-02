@@ -1,4 +1,4 @@
-# MoM Boilerplate
+# Catalog Service
 
 Стартовый шаблон для Go-микросервисов в рамках Battle Project.
 
