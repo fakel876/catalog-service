@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/fakel876/catalog-service/internal/app/config"
 	"log"
+
+	"github.com/fakel876/catalog-service/internal/app/config"
 )
 
 func main() {
