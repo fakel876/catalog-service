@@ -10,7 +10,7 @@ services:
   # PostgreSQL
   # ---------------------------------------------------------------------------- #
   postgres:
-    container_name: "catalog_postgres"
+    container_name: "catalog-postgres"
     image: "postgres:16-alpine"
     restart: "unless-stopped"
     ports:
@@ -33,10 +33,10 @@ services:
 # Volumes
 # ---------------------------------------------------------------------------- #
 volumes:
-  mom_bp_postgres_data: {}
+  catalog_postgres_data: {}
 
 # ---------------------------------------------------------------------------- #
 # Networks
 # ---------------------------------------------------------------------------- #
 networks:
-  mom_bp_net: {}
+  catalog_net: {}
