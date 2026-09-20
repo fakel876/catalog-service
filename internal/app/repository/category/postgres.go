@@ -46,7 +46,6 @@ func (r *repoPg) Update(ctx context.Context, category entity.Category) error {
 }
 
 func (r *repoPg) Delete(ctx context.Context, guid uuid.UUID) error {
-
 	_, err := r.NewDelete().Model((*entity.Category)(nil)).Where("guid = ?", guid).Exec(ctx)
 
 	return rcpostgres.DeleteErr(err)
