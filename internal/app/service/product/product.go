@@ -75,8 +75,8 @@ func (s *srv) Update(ctx context.Context, guid uuid.UUID, req entity.RequestProd
 
 	product := products[0]
 
-	if req.Name != "" {
-		existing, err := s.repoProduct.List(ctx, &req.Name, nil)
+	if req.Name != nil {
+		existing, err := s.repoProduct.List(ctx, req.Name, nil)
 		if err != nil {
 			return entity.Product{}, err
 		}
@@ -87,13 +87,13 @@ func (s *srv) Update(ctx context.Context, guid uuid.UUID, req entity.RequestProd
 			}
 		}
 
-		product.Name = req.Name
+		product.Name = *req.Name
 	}
 
-	if req.CategoryGUID != uuid.Nil {
+	if *req.CategoryGUID != uuid.Nil {
 		categories, err := s.repoCategory.GetByGUIDs(
 			ctx,
-			[]uuid.UUID{req.CategoryGUID},
+			[]uuid.UUID{*req.CategoryGUID},
 		)
 		if err != nil {
 			return entity.Product{}, err
@@ -103,11 +103,11 @@ func (s *srv) Update(ctx context.Context, guid uuid.UUID, req entity.RequestProd
 			return entity.Product{}, entity.ErrNotFound
 		}
 
-		product.CategoryGUID = req.CategoryGUID
+		product.CategoryGUID = *req.CategoryGUID
 	}
 
-	if req.Price > 0 {
-		product.Price = req.Price
+	if req.Price != nil {
+		product.Price = *req.Price
 	}
 
 	product.UpdatedAt = time.Now()
@@ -136,5 +136,5 @@ func (s *srv) List(
 	ctx context.Context,
 	req entity.RequestProductList,
 ) ([]entity.Product, error) {
-	return s.repoProduct.List(ctx, nil, &req.CategoryGUID)
+	return s.repoProduct.List(ctx, nil, req.CategoryGUID)
 }

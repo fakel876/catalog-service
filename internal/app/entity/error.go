@@ -18,5 +18,5 @@ var (
 	ErrNotFound            = NewAppError(http.StatusNotFound, "not found")
 	ErrAlreadyExists       = NewAppError(http.StatusConflict, "already exists")
 	ErrCategoryHasProducts = NewAppError(http.StatusConflict, "category has linked products")
-	ErrIncorrectParameters = NewAppError(http.StatusConflict, "incorrect parameters")
+	ErrIncorrectParameters = NewAppError(http.StatusBadRequest, "incorrect parameters")
 )

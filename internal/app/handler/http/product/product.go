@@ -45,12 +45,13 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	resp := entity.ResponseProductCreate{
 		GUID:         product.GUID,
 		Name:         product.Name,
+		Description:  product.Description,
 		CategoryGUID: product.CategoryGUID,
 		Price:        product.Price,
 		CreatedAt:    product.CreatedAt,
 	}
 
-	httph.SendJson(w, http.StatusCreated, resp)
+	httph.SendJSON(w, http.StatusCreated, resp)
 }
 
 func (h *handler) Update(w http.ResponseWriter, r *http.Request) {
@@ -83,12 +84,14 @@ func (h *handler) Update(w http.ResponseWriter, r *http.Request) {
 	resp := entity.ResponseProductUpdate{
 		GUID:         product.GUID,
 		Name:         product.Name,
+		Description:  product.Description,
 		CategoryGUID: product.CategoryGUID,
 		Price:        product.Price,
+		CreatedAt:    product.CreatedAt,
 		UpdatedAt:    product.UpdatedAt,
 	}
 
-	httph.SendJson(w, http.StatusOK, resp)
+	httph.SendJSON(w, http.StatusOK, resp)
 }
 
 func (h *handler) Delete(w http.ResponseWriter, r *http.Request) {
@@ -139,5 +142,5 @@ func (h *handler) List(w http.ResponseWriter, r *http.Request) {
 		Data: items,
 	}
 
-	httph.SendJson(w, http.StatusOK, resp)
+	httph.SendJSON(w, http.StatusOK, resp)
 }
