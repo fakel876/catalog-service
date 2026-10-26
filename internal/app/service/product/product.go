@@ -46,6 +46,7 @@ func (s *srv) Create(ctx context.Context, req entity.RequestProductCreate) (enti
 	product := entity.Product{
 		GUID:         uuid.Must(uuid.NewV4()),
 		Name:         req.Name,
+		Description:  req.Description,
 		Price:        req.Price,
 		CategoryGUID: req.CategoryGUID,
 		CreatedAt:    now,
@@ -90,7 +91,7 @@ func (s *srv) Update(ctx context.Context, guid uuid.UUID, req entity.RequestProd
 		product.Name = *req.Name
 	}
 
-	if *req.CategoryGUID != uuid.Nil {
+	if req.CategoryGUID != nil && *req.CategoryGUID != uuid.Nil {
 		categories, err := s.repoCategory.GetByGUIDs(
 			ctx,
 			[]uuid.UUID{*req.CategoryGUID},

@@ -131,6 +131,7 @@ func (h *handler) List(w http.ResponseWriter, r *http.Request) {
 		items = append(items, entity.ResponseProductListItem{
 			GUID:         product.GUID,
 			Name:         product.Name,
+			Description:  product.Description,
 			CategoryGUID: product.CategoryGUID,
 			Price:        product.Price,
 			CreatedAt:    product.CreatedAt,
